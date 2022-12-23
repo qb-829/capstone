@@ -1,8 +1,9 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Sign from '../Sign';
 
 export default function LoginForm() {
 
@@ -32,11 +33,12 @@ export default function LoginForm() {
     
     //grab the username and password from the input fields
 
-    const handleClick = (e) => {
-        window.location.reload();
-    };
+    // const handleClick = (e) => {
+    //     window.location.reload();
+    // };
 
     const handleSubmit = (e) => {
+        console.log(username)
         e.preventDefault();
     
         setIsSubmitted(true);
@@ -49,13 +51,13 @@ export default function LoginForm() {
 
     const getRecords = async() => {
         // try catch block
-        let records = true, user = true; // for test only. Delete this when the db below is used
+        let records = true, username = true; // for test only. Delete this when the db below is used
         // const records = await Users.querry... // finish some cool code here
         // find the username and password
         // if records.length is > 0
         // check the password
         // if password matches
-        navigate('/protected-page', {
+        navigate('/Home', {
             state: {
                 username: username,
                 password: password,
@@ -67,7 +69,7 @@ export default function LoginForm() {
     return <>
         <div>
 
-            {/* create a form with username and password fileds */}
+            {/* create a form with username and password fields */}
             <form id='form' className='form-group container' onSubmit={handleSubmit} >
                 <div className='d-flex flex-column'>
                     <h2>Login or Sign up below</h2>
@@ -95,13 +97,24 @@ export default function LoginForm() {
                             required
                         />
                     </div>
-                    <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'>LOGIN</Button>
+                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'onClick={() => handleSubmit()}>
+                    <Link to="./Display">LOGIN</Link> 
+                    </Button>
+
                 </div>
             
+                    <br /><h5>No Account? No problem! Sign up below!</h5>
+
 
                     <br />
-                    <Button variant="contained" onClick={handleClick} className='btn btn-danger' id='btn-danger' >SIGN UP</Button>
+                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' onClick={event =>  window.location.href='/seeders.js'}>
+                    <Link to="./Sign">SIGN UP</Link>
+                    </Button>
+
+                 
             </form>
+            
         </div>
   </>
 }
+

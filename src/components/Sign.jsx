@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
+// import axios from 'axios';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+// import Background from './assets/images/background.png'; 
 
 function Sign () {
     return <>
@@ -29,6 +32,8 @@ function Sign () {
                      name='username'
                      id='username'
                      placeholder='Enter your username'
+                     title="letters and numbers (no special characters, 4 character min, 12 character max)"
+                     pattern="[A-Za-z0-9]{4,12}"
                      required>
                      </input>
                  </div>
@@ -41,7 +46,10 @@ function Sign () {
                      type="text"
                      name='password'
                      id='password'
-                     placeholder='enter a password'
+                     placeholder='Enter a password'
+                     title="letters and numbers (no special characters, 4 character min, 12 character max)"
+                     pattern="[A-Za-z0-9]{4,12}"
+                     
                      required >
                      
                      </input>
@@ -49,10 +57,11 @@ function Sign () {
            </div>
     </form>
   
-      <Button variant="contained">Submit</Button>
+      <Button component={Link} to="/Display" variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
    
  </>
     
+   
 }
  export default Sign;
 
