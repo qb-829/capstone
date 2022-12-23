@@ -4,6 +4,10 @@ import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
 import About from './components/About';
 import Contact from './components/Contact';
+import Display from './components/Display';
+import Results from './components/Results';
+import Search from './components/Search';
+import Footer from './components/sub-components/Footer';
 import Sign from './components/Sign';
 import {
   BrowserRouter as Router,
@@ -18,11 +22,14 @@ function App() {
       <Routes>
         <Route path='/' exact render={(props) => <Home />} /> 
         <Route path='/about' element={<About />}/> 
-        <Route path='/contact' element={<Contact />}/>
+        <Route path='/myplaylist' element={<Display />}/> 
+        <Route path='/create' element={<Results />}/> 
+        <Route path='/search' element={<Search />}/> 
+        <Route path='/contact' element={<Contact />}/> 
         <Route path="/Sign" exact render={(props) => <Sign />} />
 
       </Routes>
-      
+      <Footer/>
     </Router>
 
   </>
