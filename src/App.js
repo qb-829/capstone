@@ -1,3 +1,4 @@
+
 import './components/assets/styles/baselayout.css';
 import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
@@ -15,10 +16,11 @@ function App() {
     <Router>
       < Nav />
       <Routes>
-        <Route path='/' element={<Home />}/> 
+        <Route path='/' exact render={(props) => <Home />} /> 
         <Route path='/about' element={<About />}/> 
-        <Route path='/contact' element={<Contact />}/> 
-        <Route path='/Sign' element={<Sign />}/>
+        <Route path='/contact' element={<Contact />}/>
+        <Route path="/Sign" exact render={(props) => <Sign />} />
+
       </Routes>
       
     </Router>

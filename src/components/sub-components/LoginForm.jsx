@@ -33,11 +33,12 @@ export default function LoginForm() {
     
     //grab the username and password from the input fields
 
-    const handleClick = (e) => {
-        window.location.reload();
-    };
+    // const handleClick = (e) => {
+    //     window.location.reload();
+    // };
 
     const handleSubmit = (e) => {
+        console.log(username)
         e.preventDefault();
     
         setIsSubmitted(true);
@@ -50,13 +51,13 @@ export default function LoginForm() {
 
     const getRecords = async() => {
         // try catch block
-        let records = true, user = true; // for test only. Delete this when the db below is used
+        let records = true, username = true; // for test only. Delete this when the db below is used
         // const records = await Users.querry... // finish some cool code here
         // find the username and password
         // if records.length is > 0
         // check the password
         // if password matches
-        navigate('/protected-page', {
+        navigate('/Home', {
             state: {
                 username: username,
                 password: password,
@@ -96,18 +97,24 @@ export default function LoginForm() {
                             required
                         />
                     </div>
-                    <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'>
+                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'onClick={() => handleSubmit()}>
                     <Link to="./Display">LOGIN</Link> 
                     </Button>
+
                 </div>
             
+                    <br /><h5>No Account? No problem! Sign up below!</h5>
+
 
                     <br />
-                    <Button  variant="contained" onClick={handleClick} className='btn btn-danger' id='btn-danger'>
+                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' onClick={event =>  window.location.href='/seeders.js'}>
                     <Link to="./Sign">SIGN UP</Link>
                     </Button>
+
+                 
             </form>
             
         </div>
   </>
 }
+
