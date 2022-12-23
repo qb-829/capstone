@@ -1,8 +1,9 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Sign from '../Sign';
 
 export default function LoginForm() {
 
@@ -68,7 +69,7 @@ export default function LoginForm() {
     return <>
         <div>
 
-            {/* create a form with username and password fileds */}
+            {/* create a form with username and password fields */}
             <form id='form' className='form-group container' onSubmit={handleSubmit} >
                 <div className='d-flex flex-column'>
                     <h2>Login or Sign up below</h2>
@@ -96,15 +97,23 @@ export default function LoginForm() {
                             required
                         />
                     </div>
-                    <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit' onClick={() => handleSubmit()}>LOGIN</Button>
-                    
+                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'onClick={() => handleSubmit()}>
+                    <Link to="./Display">LOGIN</Link> 
+                    </Button>
+
                 </div>
             
                     <br /><h5>No Account? No problem! Sign up below!</h5>
 
-                    <Button variant="contained" className='btn btn-danger' id='btn-danger' onClick={event =>  window.location.href='/seeders.js'}>SIGN UP</Button>
-                    
+
+                    <br />
+                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' onClick={event =>  window.location.href='/seeders.js'}>
+                    <Link to="./Sign">SIGN UP</Link>
+                    </Button>
+
+                 
             </form>
+            
         </div>
   </>
 }
