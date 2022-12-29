@@ -5,7 +5,6 @@ import Nav from './components/sub-components/Nav'
 import About from './components/About';
 import Contact from './components/Contact';
 import Display from './components/Display';
-import Results from './components/Results';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
 import Sign from './components/Sign';
@@ -20,13 +19,12 @@ function App() {
     <Router>
       < Nav />
       <Routes>
-        <Route path='/' exact render={(props) => <Home />} /> 
+        <Route path='/' element={ <Home />} /> 
         <Route path='/about' element={<About />}/> 
         <Route path='/myplaylist' element={<Display />}/> 
-        <Route path='/create' element={<Results />}/> 
-        <Route path='/search' element={<Search />}/> 
+        <Route path='/create' element={<Search />}/> 
         <Route path='/contact' element={<Contact />}/> 
-        <Route path="/Sign" exact render={(props) => <Sign />} />
+        <Route path='/Sign' element={ <Sign />} />
 
       </Routes>
       <Footer/>
