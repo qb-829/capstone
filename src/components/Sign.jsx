@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+// import React, { useState, useEffect} from 'react'
 // import axios from 'axios';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
@@ -54,10 +54,11 @@ function Sign () {
                      
                      </input>
                  </div>
+                 
            </div>
     </form>
   
-      <Button component={Link} to="/Display" variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
+    <Button component={Link} to="/Display" variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
    
  </>
     

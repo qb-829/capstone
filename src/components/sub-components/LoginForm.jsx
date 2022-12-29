@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Sign from '../Sign';
 
+
 export default function LoginForm() {
 
     // declare state vars
@@ -107,14 +108,15 @@ export default function LoginForm() {
 
 
                     <br />
-                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' onClick={event =>  window.location.href='/seeders.js'}>
+                    <Button variant="contained" onClick={handleSubmit} className='btn btn-danger' id='btn-danger'>
                     <Link to="./Sign">SIGN UP</Link>
                     </Button>
 
                  
             </form>
-            
+           
         </div>
+       
   </>
 }
 

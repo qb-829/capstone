@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '@mui/material/Button';
 
 export default function Display() {
     //cool code that calls to the database

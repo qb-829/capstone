@@ -15,19 +15,32 @@ import {
   Route,
 } from 'react-router-dom';
 
+
 function App() {
   return <>
     <Router>
       < Nav />
       <Routes>
-        <Route path='/' exact render={(props) => <Home />} /> 
+        <Route path='/' element={<Home />} /> 
         <Route path='/about' element={<About />}/> 
         <Route path='/myplaylist' element={<Display />}/> 
         <Route path='/create' element={<Results />}/> 
         <Route path='/search' element={<Search />}/> 
         <Route path='/contact' element={<Contact />}/> 
-        <Route path="/Sign" exact render={(props) => <Sign />} />
+        <Route path="/Sign" element={<Sign />} />
 
+{/* function App(){
+const [name, setName] = useState("")
+
+async function postName(e)
+ e.preventDefault()
+
+ try{
+  await axios.post("http://localhost:3001", )
+ }catch(error){
+
+ }
+} */}
       </Routes>
       <Footer/>
     </Router>
