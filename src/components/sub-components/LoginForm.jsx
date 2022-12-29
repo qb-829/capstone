@@ -98,8 +98,8 @@ export default function LoginForm() {
                             required
                         />
                     </div>
-                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'onClick={() => handleSubmit()}>
-                    <Link to="./Display">LOGIN</Link> 
+                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit' href='/myplaylist' onClick={() => handleSubmit()}>
+                    LOGIN 
                     </Button>
 
                 </div>
@@ -108,8 +108,10 @@ export default function LoginForm() {
 
 
                     <br />
-                    <Button variant="contained" onClick={handleSubmit} className='btn btn-danger' id='btn-danger'>
-                    <Link to="./Sign">SIGN UP</Link>
+
+                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' href='/sign'>
+                    SIGN UP
+
                     </Button>
 
                  

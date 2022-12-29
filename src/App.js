@@ -5,7 +5,6 @@ import Nav from './components/sub-components/Nav'
 import About from './components/About';
 import Contact from './components/Contact';
 import Display from './components/Display';
-import Results from './components/Results';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
 import Sign from './components/Sign';
@@ -21,13 +20,20 @@ function App() {
     <Router>
       < Nav />
       <Routes>
+<<<<<<< HEAD
         <Route path='/' element={<Home />} /> 
+=======
+        <Route path='/' element={ <Home />} /> 
+>>>>>>> main
         <Route path='/about' element={<About />}/> 
         <Route path='/myplaylist' element={<Display />}/> 
-        <Route path='/create' element={<Results />}/> 
-        <Route path='/search' element={<Search />}/> 
+        <Route path='/create' element={<Search />}/> 
         <Route path='/contact' element={<Contact />}/> 
+<<<<<<< HEAD
         <Route path="/Sign" element={<Sign />} />
+=======
+        <Route path='/Sign' element={ <Sign />} />
+>>>>>>> main
 
 {/* function App(){
 const [name, setName] = useState("")
