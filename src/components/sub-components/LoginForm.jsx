@@ -99,7 +99,7 @@ export default function LoginForm() {
                             required
                         />
                     </div>
-                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'onClick={event =>  window.location.href='/Display'}>
+                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit'onClick={event =>  window.location.href='/myplaylist'}>
                     <Link to="./Display">LOGIN</Link> 
                     </Button>
 
