@@ -15,15 +15,27 @@ export default function Display() {
 
   async function postPlaylist(e){
     e.preventDefault()
-
-      try {
-        await axios.post('http://localhost:3001/myplaylist',{
-          artistName
-        })
+      const[data,setData] = useState("");
+        const response = await Axios.get ("http://localhost:5000/myplaylist");
+        setData(response.data);
+      
+      useEffect(() => {
+          postPlaylist ()
+      },[]);
+      return (
+          <div>
+              {data}
+          </div>
+      )
+  }
+      // try {
+      //   await axios.post('http://localhost:5000/myplaylist',{
+      //     artistName
+      //   })
         
-      } catch (error) {
-        console.log(error)
-      }
+      // } catch (error) {
+      //   console.log(error)
+      // }
 
 
   }
@@ -53,4 +65,4 @@ export default function Display() {
     </div>
   </>
   
-}
+

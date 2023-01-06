@@ -1,4 +1,3 @@
-
 import './components/assets/styles/baselayout.css';
 import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
@@ -8,6 +7,8 @@ import Display from './components/Display';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
 import Sign from './components/Sign';
+import React, {useEffect, useState} from 'react';
+import Axios from 'axios';
 import {
   BrowserRouter as Router,
   Routes,
@@ -15,6 +16,21 @@ import {
 } from 'react-router-dom';
 
 function App() {
+    const App = () => {
+        const[data,setData] = useState("");
+        const getData = async() => {
+            const response = await Axios.get ("http://localhost:5000/getData");
+            setData(response.data);
+        }
+        useEffect(() => {
+            getData ()
+        },[]);
+        return (
+            <div>
+                {data}
+            </div>
+        )
+    }
   return <>
     <Router>
       < Nav />
