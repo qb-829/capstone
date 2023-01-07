@@ -1,10 +1,34 @@
 import React, { useState, useEffect} from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // import Background from './assets/images/background.png'; 
 
 function Sign () {
+
+  const navigate = useNavigate();
+
+  async function handleSubmit (e) {
+    e.preventDefault();
+    //user info has to be stored in the user database and authenticated 
+    //which means hitting the backend server with an axios call
+    //user has to be navigated to the '/myplaylist' page where they can view their current playlists a/o create a new one by hitting the button to '/create' 
+
+    console.log('sign in');
+    console.log("Time: ", Date.now())
+
+        try {
+            await axios.get('http://localhost:3000/myplaylist', {
+
+            })
+        } catch (error) {
+            console.log(error);
+        }
+
+    navigate('/')
+
+      }
+
     return <>
     
        <h1> Sign Up </h1>
@@ -57,8 +81,7 @@ function Sign () {
            </div>
     </form>
   
-      <Button component={Link} to="/Display" variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
-   
+      <Button onClick={handleSubmit} variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
  </>
     
    

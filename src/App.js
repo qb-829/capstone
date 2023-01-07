@@ -1,5 +1,3 @@
-
-
 import './components/assets/styles/baselayout.css';
 import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
@@ -20,9 +18,8 @@ import {
 
 
 function App() {
-
     const App = () => {
-        const[data,setData] = useState("Test Worked");
+        const[data,setData] = useState("");
         const getData = async() => {
             const response = await Axios.get ("http://localhost:5000/getData");
             setData(response.data);
@@ -36,7 +33,6 @@ function App() {
             </div>
         )
     }
-    
   return <>
     <Router>
       < Nav />
