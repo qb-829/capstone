@@ -8,6 +8,12 @@ export default function Search() {
   const [searchArtist, setArtistResults] = useState([]);
   const [searchGenre, setGenreResults] = useState([]);
   const [genre, setGenre] = useState("");
+  const [playlist,setPlaylist] = useState({
+    id: "",
+    artistName: "",
+    songName: "",
+    genre: "",
+  })
 
   // const resultsList = useSelector()
 
@@ -58,8 +64,8 @@ async function handleSubmit(songName, artistName) {
 
     try {
       console.log(genre, artistName);
-      await axios.get("http://localhost:5000/getData", {
-        id: "Riya",
+      await axios.get("http://localhost:5000/playlist", {
+        id: "",
         artistName: artistName,
         songName: songName,
         genre: genre,

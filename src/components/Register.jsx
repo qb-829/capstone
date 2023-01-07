@@ -4,28 +4,55 @@ import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 // import Background from './assets/images/background.png'; 
 
-function Sign () {
+function Register () {
+  const url = 'http://localhost:5000/register'
+  const [user, setUser] = useState({
+    email:'',
+    username: '',
+    password:''
+  })
 
   const navigate = useNavigate();
 
-  async function handleSubmit (e) {
-    e.preventDefault();
+async function buttonClick(e) {
+  e.preventDefault();
+  console.log(user)
+  try {
+    await axios.post(url,{
+      email:user.email,
+      username: user.username,
+      password:user.password
+    })
+    .then(res=>{
+      console.log(res.user);
+    })
+    
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+function handleSubmit (e) {
+    const newUser={...user}
+    newUser[e.target.id] = e.target.value
+    setUser(newUser)
+    console.log(newUser)
     //user info has to be stored in the user database and authenticated 
     //which means hitting the backend server with an axios call
     //user has to be navigated to the '/myplaylist' page where they can view their current playlists a/o create a new one by hitting the button to '/create' 
 
-    console.log('sign in');
-    console.log("Time: ", Date.now())
+    // console.log('sign in');
+    // console.log("Time: ", Date.now())
 
-        try {
-            await axios.get('http://localhost:3000/myplaylist', {
+    //     try {
+    //         await axios.get('http://localhost:3000/myplaylist', {
 
-            })
-        } catch (error) {
-            console.log(error);
-        }
+    //         })
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
 
-    navigate('/')
+    // navigate('/')
 
       }
 
@@ -33,15 +60,17 @@ function Sign () {
     
        <h1> Sign Up </h1>
 
-        <form id='form' className='form-group container'>
+        <form id='form' onSubmit={buttonClick} className='form-group container'>
             <div className='d-flex flex-column'>
                <h2> Email Address </h2> 
                  <div>
                     <input
+                     onChange={(e)=>handleSubmit(e)}
+                     value={user.email}
                      className='form-control'
                      type="text"
                      name='email'
-                     id='name'
+                     id='email'
                      placeholder='Enter your email address'
                      required>
                      </input>
@@ -51,6 +80,8 @@ function Sign () {
                <h2> Username </h2> 
                  <div>
                     <input
+                     onChange={(e)=>handleSubmit(e)}
+                     value={user.username}
                      className='form-control'
                      type="text"
                      name='username'
@@ -66,6 +97,8 @@ function Sign () {
                <h2> Password </h2> 
                  <div>
                     <input
+                     onChange={(e)=>handleSubmit(e)}
+                     value={user.password}
                      className='form-control'
                      type="text"
                      name='password'
@@ -79,12 +112,12 @@ function Sign () {
                      </input>
                  </div>
            </div>
+      <Button onClick={buttonClick} variant="contained" className='btn btn-primary' type='submit' id='btn-submit'> Submit</Button>
     </form>
   
-      <Button onClick={handleSubmit} variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
  </>
     
    
 }
- export default Sign;
+ export default Register;
 
