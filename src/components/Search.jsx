@@ -8,12 +8,11 @@ export default function Search() {
   const [searchArtist, setArtistResults] = useState([]);
   const [searchGenre, setGenreResults] = useState([]);
   const [genre, setGenre] = useState("");
-  const [playlist,setPlaylist] = useState({
-    id: "",
+  const [playlist, setPlaylist] = useState({
     artistName: "",
     songName: "",
     genre: "",
-  })
+  });
 
   // const resultsList = useSelector()
 
@@ -50,12 +49,14 @@ export default function Search() {
         console.log(error);
       }
     }
+  };
 
-};
+  useEffect(() => {}, [searchInput, searchArtist, searchGenre, genre]);
 
-useEffect(() => {}, [searchInput, searchArtist, searchGenre, genre]);
-
-async function handleSubmit(songName, artistName) {
+  async function handleSubmit(itemArtistName, itemName) {
+    // e.preventDefault();
+    console.log(itemName);
+    console.log(itemArtistName);
     // function handlesubmit calls the endpoint that will take the information and send it to the playlist database
     console.log("Time: ", Date.now(), "music");
 
@@ -63,20 +64,19 @@ async function handleSubmit(songName, artistName) {
     //the Genre will be assigned the 'miscellaneous' value for the playlist database
 
     try {
-      console.log(genre, artistName);
-      await axios.get("http://localhost:5000/playlist", {
-        id: "",
-        artistName: artistName,
-        songName: songName,
-        genre: genre,
-      });
+      await axios
+        .post("http://localhost:5000/create", {
+          artistName: itemArtistName,
+          songName: itemName,
+          genre: genre,
+        })
+        .then((res) => {
+          console.log(res);
+        });
     } catch (error) {
       console.log(error);
     }
-
-    console.log("hit");
   }
-
   return (
     <>
       <div>
@@ -132,12 +132,13 @@ async function handleSubmit(songName, artistName) {
           <button onClick={() => search(searchInput, false)}>Search</button>
         </div>
         <div>
+          {/* ARTIST SEARCH BY INPUT */}
           {searchArtist.map((item) => {
             return (
               <>
                 <div>
                   <Button
-                    onClick={(e) => handleSubmit(item.name, item.artist.name)}
+                    onClick={(e) => handleSubmit(item.artist.name, item.name)}
                     className="btn btn-danger"
                     id="btn-danger"
                   >
@@ -150,20 +151,16 @@ async function handleSubmit(songName, artistName) {
             );
           })}
         </div>
-        {/* <div>
-          <button onClick={() => search("pop", true)}>pop</button>
-          <button onClick={() => search("rock", true)}>rock</button>
-          <button onClick={() => search("disco", true)}>disco</button>
-        </div> */}
 
         <div>
+          {/* GENRE SEARCH BY BUTTON */}
           {searchGenre.map((item, index) => {
             return (
               <>
                 <div key={index}>
                   {/* stylized button with an onClick method that will have another function that add the song to the playlist */}
                   <Button
-                    onClick={(e) => handleSubmit(item.name, item.artist.name)}
+                    onClick={(e) => handleSubmit(item.artist.name, item.name)}
                     className="btn btn-danger"
                     id="btn-danger"
                   >
@@ -171,6 +168,7 @@ async function handleSubmit(songName, artistName) {
                   </Button>
                   <h2>Song Title: {item.name}</h2>
                   <h3>Artist: {item.artist.name}</h3>
+                  <h3>Genre: {genre}</h3>
                 </div>
               </>
             );
