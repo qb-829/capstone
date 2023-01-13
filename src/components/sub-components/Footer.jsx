@@ -1,7 +1,7 @@
 
 export default function Footer(){
     return <>
-        <footer class="container-fluid footer_section">
+        <footer class="container-fluid footer_section" id='footer'>
             <p>
             Copyright &copy; 2022 All Rights Reserved By The ROW
             </p>

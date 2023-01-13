@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import Sign from '../Sign';
+import Register from '../Register';
 
 
 export default function LoginForm() {
@@ -109,7 +109,7 @@ export default function LoginForm() {
 
                     <br />
 
-                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' href='/sign'>
+                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' href='/Register'>
                     SIGN UP
 
                     </Button>

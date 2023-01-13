@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-// import React, { useState, useEffect} from 'react'
-// import axios from 'axios';
-=======
+
 import React, { useState, useEffect} from 'react'
 import axios from 'axios';
->>>>>>> main
 import Button from '@mui/material/Button';
 import { Link, useNavigate } from 'react-router-dom';
 // import Background from './assets/images/background.png'; 
@@ -30,7 +26,7 @@ function Sign () {
             console.log(error);
         }
 
-    navigate('/')
+    navigate('/MyPlaylist')
 
       }
 
@@ -38,7 +34,10 @@ function Sign () {
     
        <h1> Sign Up </h1>
 
-        <form id='form' className='form-group container'>
+        <form id='form'
+        action="/Register"
+        method='POST'
+        className='form-group container'>
             <div className='d-flex flex-column'>
                <h2> Email Address </h2> 
                  <div>
@@ -46,7 +45,7 @@ function Sign () {
                      className='form-control'
                      type="text"
                      name='email'
-                     id='name'
+                     id='email address'
                      placeholder='Enter your email address'
                      required>
                      </input>
@@ -85,14 +84,12 @@ function Sign () {
                  </div>
                  
            </div>
-    </form>
-  
-<<<<<<< HEAD
-    <Button component={Link} to="/Display" variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
-   
-=======
-      <Button onClick={handleSubmit} variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
->>>>>>> main
+           <Button onClick={handleSubmit} variant="contained" type='submit' className='btn btn-primary' id='btn-submit'> Submit</Button>
+           </form>
+
+
+      
+
  </>
     
    

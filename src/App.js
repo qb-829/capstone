@@ -4,10 +4,12 @@ import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
 import About from './components/About';
 import Contact from './components/Contact';
-import Display from './components/Display';
+import MyPlaylist from './components/MyPlaylist';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
-import Sign from './components/Sign';
+import Register from './components/Register';
+import React,{useEffect, useState} from 'react'
+import Axios from 'axios';
 import {
   BrowserRouter as Router,
   Routes,
@@ -16,24 +18,33 @@ import {
 
 
 function App() {
-  return <>
+  const App = () => {
+    const[data,setData] = useState("");
+    const getData = async() => {
+        const response = await Axios.get ("http://localhost:5000/getData");
+        setData(response.data);
+    }
+    useEffect(() => {
+        getData ()
+    },[]);
+    return (
+        <div>
+            {data}
+        </div>
+    )
+}
+return<>
     <Router>
       < Nav />
       <Routes>
-<<<<<<< HEAD
-        <Route path='/' element={<Home />} /> 
-=======
+
         <Route path='/' element={ <Home />} /> 
->>>>>>> main
         <Route path='/about' element={<About />}/> 
-        <Route path='/myplaylist' element={<Display />}/> 
+        <Route path='/myplaylist' element={<MyPlaylist />}/> 
         <Route path='/create' element={<Search />}/> 
         <Route path='/contact' element={<Contact />}/> 
-<<<<<<< HEAD
-        <Route path="/Sign" element={<Sign />} />
-=======
-        <Route path='/Sign' element={ <Sign />} />
->>>>>>> main
+        <Route path='/Register' element={ <Register />} />
+
 
 {/* function App(){
 const [name, setName] = useState("")
