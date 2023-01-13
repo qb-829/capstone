@@ -47,6 +47,7 @@ export default function MyPlaylist() {
         {/* user information will be pulled from user table once signed in */}
         <h2>Here are your playlists:</h2>
         {/* for each genre that has a playlist it creates a div */}
+
         <div>{data}</div>
         <div>
           <h3>Playlist One: </h3>

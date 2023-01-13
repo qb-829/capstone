@@ -107,14 +107,18 @@ export default function LoginForm() {
 
 
                     <br />
-                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' href='/register'>
+
+                    <Button  variant="contained" className='btn btn-danger' id='btn-danger' href='/Register'>
+
                     SIGN UP
+
                     </Button>
 
                  
             </form>
-            
+           
         </div>
+       
   </>
 }
 
