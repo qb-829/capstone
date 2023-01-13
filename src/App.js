@@ -3,7 +3,7 @@ import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
 import About from './components/About';
 import Contact from './components/Contact';
-// import MyPlaylist from './components/MyPlaylist';
+import MyPlaylist from './components/MyPlaylist';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
 import Register from './components/Register';
@@ -37,7 +37,7 @@ function App() {
       <Routes>
         <Route path='/' element={ <Home />} /> 
         <Route path='/about' element={<About />}/> 
-        {/* <Route path='/myplaylist' element={<MyPlaylist />}/>  */}
+        <Route path='/myplaylist' element={<MyPlaylist />}/> 
         <Route path='/create' element={<Search />}/> 
         <Route path='/contact' element={<Contact />}/> 
         <Route path='/register' element={ <Register />} />
