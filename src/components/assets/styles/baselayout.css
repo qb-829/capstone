@@ -1,10 +1,15 @@
-body {
-  background-image: url("https://www.savethestudent.org/uploads/Man-listening-music-streaming-soundwave-audio-headphones.jpg");
-  background-repeat: no-repeat;
+.background {
+  background-image: url('https://www.savethestudent.org/uploads/Man-listening-music-streaming-soundwave-audio-headphones.jpg');
   background-size: cover;
-  color: black;
-  font-family: Arial;
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.Nav {
+
 }
 
 .pb-5 {
@@ -18,6 +23,9 @@ body {
   opacity: 0.8;
   background-color: white;
   height: 400px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 #btn-submit {
@@ -49,13 +57,58 @@ body {
 }
 
 #footer {
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: black;
   color: white;
+  text-align: center;
 }
+
+/* Search page */
+
+.searchText, .heading-text, .text-uppercase {
+  text-align: center;
+}
+
+.searchText {
+font-size: x-large;
+font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* end of search page */
+
+/* about page */
+
+.about-container {
+  padding: 2rem;
+  text-align: center;
+}
+
+.header {
+  background-image: url('https://thumbs.dreamstime.com/b/music-learning-app-banner-listening-online-advertising-lettering-musicians-figures-instruments-symbols-header-colorful-vector-165304556.jpg');
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  flex: 1;
+  text-align: center;
+  margin: 1rem;
+}
+.card img {
+  width: 100%;
+}
+
+/* end of about page */
 
 /* genre section */
 .genre_box {
@@ -90,7 +143,7 @@ body {
 }
 
 .genre_box:hover .genre_img-box {
-  background-color: #fddd33;
+  /* background-color: #fddd33; */
 }
 
 .genre_img-box {
@@ -108,7 +161,9 @@ body {
 }
 
 .genre_img-box img {
-  width: 120px;
+  width: 225px;
+  height: 295px;
+  border-radius: 90px;
 }
 
 .genre_detail p {
@@ -117,3 +172,56 @@ body {
 } 
 
 /* end genre section */
+
+/* contact page */
+
+.background {
+  background-image: url('https://www.savethestudent.org/uploads/Man-listening-music-streaming-soundwave-audio-headphones.jpg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.contactForm {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+    text-align: center;
+    margin: 3rem auto;
+    width: 80%;
+}
+
+.contactForm label {
+    display: block;
+    margin: 1rem 0;
+}
+
+.form input, .form textarea {
+  width: 30%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  border: 1px solid gray;
+  }
+  
+  .form input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+  }
+  
+  .form input[type="submit"]:hover {
+  background-color: #3e8e41;
+  }
+
+  .align-right {
+    text-align: right;
+    float: right;
+}

@@ -15,7 +15,10 @@ import {
   Route,
 } from 'react-router-dom';
 
+
 function App() {
+
+  
     const App = () => {
         const[data,setData] = useState("");
         const getData = async() => {

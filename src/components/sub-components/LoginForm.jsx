@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Register from '../Register';
+import '../assets/images/background.png'
+
 
 export default function LoginForm() {
 
@@ -13,6 +15,7 @@ export default function LoginForm() {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const navigate = useNavigate();
+
 
     // allows rendering and refreshing of the component
     useEffect(() => {
@@ -67,7 +70,8 @@ export default function LoginForm() {
     }
 
     return <>
-        <div>
+            <div className="App">
+
 
             {/* create a form with username and password fields */}
             <form id='form' className='form-group container' onSubmit={handleSubmit} >
