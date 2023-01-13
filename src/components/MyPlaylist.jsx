@@ -15,7 +15,6 @@ export default function MyPlaylist() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   useEffect(() => {
     getPlaylist();
   }, []);
@@ -24,9 +23,9 @@ export default function MyPlaylist() {
     try {
       await axios("http://localhost:5000/myplaylist").then(
         (res) => {
-          setData(res.data);
+          setData(res.data.records);
           setLoading(false);
-          console.log(res.data);
+          console.log(res.data.records);
         },
         (error) => {
           console.log("Error fetching data: ", error);
@@ -47,7 +46,9 @@ export default function MyPlaylist() {
         {/* user information will be pulled from user table once signed in */}
         <h2>Here are your playlists:</h2>
         {/* for each genre that has a playlist it creates a div */}
-        <div>{data}</div>
+        <div>{data.map(()=> {
+          
+        }) }</div>
         <div>
           <h3>Playlist One: </h3>
           {/* pulls from playlist database */}
