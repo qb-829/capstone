@@ -1,122 +1,180 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from "react";
 // import { useSelector } from 'react-redux'
-import Button from '@mui/material/Button';
-import axios from 'axios';
+import Button from "@mui/material/Button";
+import axios from "axios";
 
+export default function Search() {
+  const [searchInput, setSearchInput] = useState(null);
+  const [searchArtist, setArtistResults] = useState([]);
+  const [searchGenre, setGenreResults] = useState([]);
+  const [genre, setGenre] = useState("");
+  const [playlist, setPlaylist] = useState({
+    artistName: "",
+    songName: "",
+    genre: "",
+  });
 
-export default function Search(){
-    const [searchInput, setSearchInput] = useState(null)
-    const [searchArtist, setArtistResults] = useState([])
-    const [searchGenre, setGenreResults] = useState([])
-    const [playlist, setPlaylist] = useState('')
+  // const resultsList = useSelector()
 
-    // const resultsList = useSelector()
-    
-    const search = async (searchValue, isGenre) => {
-        if (isGenre === false ) {
-            
-            const url = `http://ws.audioscrobbler.com/2.0/?method=artist.search&artist=${searchValue}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json`;        
-    
-            try {
-                const res = await fetch(url);
-                const data = await res.json();
-        
-                console.log(data.results)
-    
-                setArtistResults(data.results.artistmatches.artist)
-                setGenreResults([])
-    
-            } catch (error) {
-                console.log(error)
-            }  
-        }
-        else {
-            const api = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${searchValue}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json`;
+  const search = async (searchValue, isGenre) => {
+    setGenre(searchValue);
+    if (isGenre === false) {
+      setGenre("miscellaneous");
 
-            try {
-                const res = await fetch(api);
-                const data = await res.json();
-        
-                console.log(data.tracks.track)
-    
-                setGenreResults(data.tracks.track)
-                setArtistResults([])
-    
-            } catch (error) {
-                console.log(error)
-            }  
-        }
-        
-        // function handlesubmit that call the endpoint that will take the information i want to send it and add it to the playlist db, see line 80 and 81
-       
+      const url = `http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=${searchValue}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json`;
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        console.log(data.toptracks.track);
+
+        setArtistResults(data.toptracks.track);
+        setGenreResults([]);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      const api = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${searchValue}&api_key=${process.env.REACT_APP_LASTFM_API_KEY}&format=json`;
+
+      try {
+        const res = await fetch(api);
+        const data = await res.json();
+
+        console.log(data.tracks.track);
+
+        setGenreResults(data.tracks.track);
+        setArtistResults([]);
+      } catch (error) {
+        console.log(error);
+      }
     }
-    async function handleSubmit (e) {
-        e.preventDefault();
-        console.log('make playlist');
-        console.log("Time: ", Date.now(), "music")
+  };
 
-            try {
-                await axios.get('http://localhost:3000/myplaylist', {
-                    "id": "Riya",
-                    "artistName": "Jeezy",
-                    "songName": "Then What",
-                    "genre": ""
-                })
-            } catch (error) {
-                console.log(error);
-            }
-        // app.get('/Display', async (req, res) => {
-        //     const playlist = await Playlist.findAll();
-        //     res.json(playlist);
-        //   });
-        console.log('hit')
-}
-    
-    return <>
-    <div>
-    <div>Search</div>
-    <label>Search Artist:</label>
-    <input onChange={(e) => setSearchInput(e.target.value)}
-    type='search' />
-    <button onClick={() => search(searchInput, false)}>SearchInput</button>
+  useEffect(() => {}, [searchInput, searchArtist, searchGenre, genre]);
 
-    <div>
-        {searchArtist.map(item => {
-            return <>
-            <div>{item.name}</div>
-            
-            </>
-        })}
-    </div>
-    <div>
-        <button onClick={() => search('pop', true)}>pop</button>
-        <button onClick={() => search('rock', true)}>rock</button>
-        <button onClick={() => search('disco', true)}>disco</button>
-    </div>
-    <div>
-        {searchGenre.map(item => {
-            return <>
-            <div>
-                <button>add to playlist-- see line 81 and 82</button>
-            <Button onClick={handleSubmit} className='btn btn-danger' id='btn-danger' >Add to Playlist</Button>
-                <p>Song Title: {item.name}</p> 
-            <br />
-                <p>Artist: {item.artist.name}</p>  
-                {/* stylized button with an onClick method that will have another function that add the song to the playlist */}
-                {/* so it won't be the input on line 82, change it to a button that will do the function, see line 49 */}
-                <input type="checkbox" name="playlist" id="playlist" onChange={(e) => setPlaylist(e.target.checked)}/>
+  async function handleSubmit(itemArtistName, itemName) {
+    // e.preventDefault();
+    console.log(itemName);
+    console.log(itemArtistName);
+    // function handlesubmit calls the endpoint that will take the information and send it to the playlist database
+    console.log("Time: ", Date.now(), "music");
 
+    //if the USER uses the search input field to find tracks to add to the playlist instead of the pre-selected genre buttons
+    //the Genre will be assigned the 'miscellaneous' value for the playlist database
+
+    try {
+      await axios
+        .post("http://localhost:5000/create", {
+          artistName: itemArtistName,
+          songName: itemName,
+          genre: genre,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return (
+    <>
+      <div>
+        <div>
+          <h1> Search</h1>
+          <br />
+          Start creating your playlist by selecting a genre
+        </div>
+
+        <div>
+          <section className="genre_section layout_padding">
+            <div className="container">
+              <div className="genre_container">
+                <div className="genre_box">
+                  <div
+                    onClick={() => search("pop", true)}
+                    className="genre_img-box"
+                  ></div>
+                  <h4>POP</h4>
+                </div>
+                <div className="genre_box">
+                  <div
+                    onClick={() => search("rock", true)}
+                    className="genre_img-box"
+                  ></div>
+                  <h4>ROCK</h4>
+                </div>
+                <div className="genre_box">
+                  <div
+                    onClick={() => search("disco", true)}
+                    className="genre_img-box"
+                  ></div>
+                  <h4>DISCO</h4>
+                </div>
+                <div className="genre_box">
+                  <div
+                    onClick={() => search("jazz", true)}
+                    className="genre_img-box"
+                  ></div>
+                  <h4>JAZZ</h4>
+                </div>
+              </div>
             </div>
-            </>
-        })}
-    </div>
-    <div>
-    </div>
-    <div>
-    </div>
-    <br />
-    <br />
-    </div>
-    <div>i love: </div>
-  </>
+          </section>
+        </div>
+        <div>
+          <label>Search by Artist:</label>
+          <br />
+          <input
+            onChange={(e) => setSearchInput(e.target.value)}
+            type="search"
+          />
+          <button onClick={() => search(searchInput, false)}>Search</button>
+        </div>
+        <div>
+          {/* ARTIST SEARCH BY INPUT */}
+          {searchArtist.map((item) => {
+            return (
+              <>
+                <div>
+                  <Button
+                    onClick={(e) => handleSubmit(item.artist.name, item.name)}
+                    className="btn btn-danger"
+                    id="btn-danger"
+                  >
+                    Add to Playlist
+                  </Button>
+                  <h2>Song Title: {item.name}</h2>
+                  <h3>Artist: {item.artist.name}</h3>
+                </div>
+              </>
+            );
+          })}
+        </div>
+
+        <div>
+          {/* GENRE SEARCH BY BUTTON */}
+          {searchGenre.map((item, index) => {
+            return (
+              <>
+                <div key={index}>
+                  {/* stylized button with an onClick method that will have another function that add the song to the playlist */}
+                  <Button
+                    onClick={(e) => handleSubmit(item.artist.name, item.name)}
+                    className="btn btn-danger"
+                    id="btn-danger"
+                  >
+                    Add to Playlist
+                  </Button>
+                  <h2>Song Title: {item.name}</h2>
+                  <h3>Artist: {item.artist.name}</h3>
+                  <h3>Genre: {genre}</h3>
+                </div>
+              </>
+            );
+          })}
+        </div>
+      </div>
+    </>
+  );
 }

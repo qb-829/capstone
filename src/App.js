@@ -1,4 +1,3 @@
-
 import './components/assets/styles/baselayout.css';
 import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
@@ -8,7 +7,7 @@ import MyPlaylist from './components/MyPlaylist';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
 import Register from './components/Register';
-import React,{useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react';
 import Axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -34,6 +33,7 @@ function App() {
     )
 }
 return<>
+
     <Router>
       < Nav />
       <Routes>
@@ -55,6 +55,7 @@ async function postName(e)
  try{
   await axios.post("http://localhost:3001", )
  }catch(error){
+
 
  }
 } */}

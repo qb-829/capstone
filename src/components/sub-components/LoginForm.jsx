@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Register from '../Register';
 
-
 export default function LoginForm() {
 
     // declare state vars
@@ -110,6 +109,7 @@ export default function LoginForm() {
                     <br />
 
                     <Button  variant="contained" className='btn btn-danger' id='btn-danger' href='/Register'>
+
                     SIGN UP
 
                     </Button>
