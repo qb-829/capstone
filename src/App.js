@@ -14,6 +14,7 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
+import Auth from './components/sub-components/Auth';
 
 
 function App() {
@@ -40,25 +41,21 @@ return<>
 
         <Route path='/' element={ <Home />} /> 
         <Route path='/about' element={<About />}/> 
-        <Route path='/myplaylist' element={<MyPlaylist />}/> 
-        <Route path='/create' element={<Search />}/> 
+        {/* <Route path='protected-page'></Route> */}
+        <Route path='/myplaylist' element={
+          <Auth>
+            <MyPlaylist />
+          </Auth> } />
+        <Route path='/create' element={
+          <Auth>
+            <Search />
+          </Auth> } />
+        {/* <Route path='/create' element={}/>  */}
         <Route path='/contact' element={<Contact />}/> 
         <Route path='/Register' element={ <Register />} />
 
 
-{/* function App(){
-const [name, setName] = useState("")
 
-async function postName(e)
- e.preventDefault()
-
- try{
-  await axios.post("http://localhost:3001", )
- }catch(error){
-
-
- }
-} */}
       </Routes>
       <Footer/>
     </Router>

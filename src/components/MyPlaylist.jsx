@@ -8,10 +8,7 @@ export default function MyPlaylist() {
   //mock data can be used to display
   //will need state to hold username - coming from user input, when someone hits login put - save input to state or global variable
   const navigate = useNavigate();
-  const [artistName, setArtistName] = useState("");
-  const [songName, setSongName] = useState("");
-  const [genre, setGenre] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,9 +16,12 @@ export default function MyPlaylist() {
     getPlaylist();
   }, []);
 
-  const getPlaylist = async () => {
+  const getPlaylist = async (itemArtistName, itemName) => {
     try {
-      await axios("http://localhost:5000/myplaylist").then(
+      await axios("http://localhost:5000/myplaylist", {
+        artistName: itemArtistName,
+        songName: itemName,
+      }).then(
         (res) => {
           setData(res.data.records);
           setLoading(false);
@@ -42,18 +42,24 @@ export default function MyPlaylist() {
   return (
     <>
       <div>
-        <h1>Welcome User</h1>
+        <h1>Welcome</h1>
         {/* user information will be pulled from user table once signed in */}
-        <h2>Here are your playlists:</h2>
+        <h2>Here is your playlist:</h2>
         {/* for each genre that has a playlist it creates a div */}
-        <div>{data.map(()=> {
-          
-        }) }</div>
         <div>
-          <h3>Playlist One: </h3>
-          {/* pulls from playlist database */}
-          <ul>track one</ul>
+          {data.map((item, index) => {
+            return (
+              <>
+                <div key={index}>
+                  <h2>Song Title: {item.songName}</h2>
+                  <h3>Artist: {item.artistName}</h3>
+                  <h3>Genre: {item.genre}</h3>
+                </div>
+              </>
+            );
+          })}
         </div>
+
         <button onClick={() => navigate("/create")} className="btn btn-primary">
           Create Playlist
         </button>

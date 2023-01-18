@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Register from '../Register';
+import axios from 'axios';
 
 export default function LoginForm() {
 
@@ -21,7 +22,7 @@ export default function LoginForm() {
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
             // call other functions
-            getRecords();
+            // getRecords();
         }
 
         // make API calls
@@ -37,34 +38,29 @@ export default function LoginForm() {
     //     window.location.reload();
     // };
 
-    const handleSubmit = (e) => {
-        console.log(username)
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(username)
+
+        const url = "http://localhost:5000/login";
     
         setIsSubmitted(true);
-        // alert(
-        //     `Form Submitted!\n
-        //     Username: ${username}\n
-        //     Password: ${password}`
-        // );
-    };
-
-    const getRecords = async() => {
-        // try catch block
-        let records = true, username = true; // for test only. Delete this when the db below is used
-        // const records = await Users.querry... // finish some cool code here
-        // find the username and password
-        // if records.length is > 0
-        // check the password
-        // if password matches
-        navigate('/Home', {
-            state: {
+        
+        try {
+            await axios
+            .post(url, {
                 username: username,
                 password: password,
-                records: records ? records : null
-            }
-        })
-    }
+            })
+            .then( (user) => {
+                console.log(user.data[0]);
+                navigate('/myplaylist', {state: { userInfo: user }})
+            });
+        } catch (error) {
+            console.log(error);
+        }
+
+    };
 
     return <>
         <div>
@@ -97,7 +93,7 @@ export default function LoginForm() {
                             required
                         />
                     </div>
-                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit' href='/myplaylist' onClick={() => handleSubmit()}>
+                 <Button variant="contained" type='submit' className='btn btn-primary' id='btn-submit' onClick={handleSubmit}>
                     LOGIN 
                     </Button>
 

@@ -1,5 +1,5 @@
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Alert, CloseButton } from 'react-bootstrap';
 
 
@@ -7,6 +7,8 @@ export default function Auth(props) {
 
     const isLoggedIn = false;
     const navigate = useNavigate();
+    const location = useLocation();
+    console.log(location);
 
     const variant = 'danger';
 
@@ -14,18 +16,18 @@ export default function Auth(props) {
     //     // alert('Login error. Please try again!');
     //     navigate('/');
     // }
-
-    return <>
-        {
-            isLoggedIn ? props.children :
-            <div>
-                <Alert key={variant} variant={variant}>
-                    Login error. Please try again!
-                    <CloseButton onClick={()=>{navigate('/')}} variant={variant} >
-                    </CloseButton>
-                </Alert>
-            </div>
-        }
+    return props.children
+    // return <>
+    //     {
+    //         location.state !== null ? props.children :
+    //         <div>
+    //             <Alert key={variant} variant={variant}>
+    //                 Login error. Please try again!
+    //                 <CloseButton onClick={()=>{navigate('/')}} variant='white' >
+    //                 </CloseButton>
+    //             </Alert>
+    //         </div>
+    //     }
         
-    </>
+    // </>
 }

@@ -26,8 +26,9 @@ function Register() {
           username: user.username,
           password: user.password,
         })
-        .then((res) => {
-          console.log(res);
+        .then( (newUser) => {
+          console.log(newUser);
+          navigate('/myplaylist', {state: { userInfo: newUser }})
         });
     } catch (error) {
       console.log(error);
@@ -38,7 +39,7 @@ function Register() {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
     setUser(newUser);
-    console.log("hello", newUser);
+    console.log("hello", newUser.username);
     //user info has to be stored in the user database and authenticated
     //which means hitting the backend server with an axios call
     //user has to be navigated to the '/myplaylist' page where they can view their current playlists a/o create a new one by hitting the button to '/create'

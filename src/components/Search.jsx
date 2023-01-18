@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-// import { useSelector } from 'react-redux'
 import Button from "@mui/material/Button";
 import axios from "axios";
+import "./assets/styles/baselayout.css";
+import { Row, Col, Card } from "react-bootstrap";
 
 export default function Search() {
   const [searchInput, setSearchInput] = useState(null);
@@ -80,7 +81,7 @@ export default function Search() {
   return (
     <>
       <div>
-        <div>
+        <div className="text-center">
           <h1> Search</h1>
           <br />
           Start creating your playlist by selecting a genre
@@ -122,7 +123,7 @@ export default function Search() {
             </div>
           </section>
         </div>
-        <div>
+        <div className="text-center">
           <label>Search by Artist:</label>
           <br />
           <input
@@ -131,48 +132,75 @@ export default function Search() {
           />
           <button onClick={() => search(searchInput, false)}>Search</button>
         </div>
+
         <div>
-          {/* ARTIST SEARCH BY INPUT */}
-          {searchArtist.map((item) => {
-            return (
-              <>
-                <div>
-                  <Button
-                    onClick={(e) => handleSubmit(item.artist.name, item.name)}
-                    className="btn btn-danger"
-                    id="btn-danger"
+          {/* ARTIST SEARCH BY INPUT MAPPING AND RETURN*/}
+          <Row lg={3}>
+            {searchArtist &&
+              searchArtist.map((item) => {
+                return (
+                  <Col
+                    className="d-flex text-center"
+                    style={{ marginTop: "10px" }}
                   >
-                    Add to Playlist
-                  </Button>
-                  <h2>Song Title: {item.name}</h2>
-                  <h3>Artist: {item.artist.name}</h3>
-                </div>
-              </>
-            );
-          })}
+                    <Card className="flex-fill">
+                      <Card.Img
+                        variant="top"
+                        src={require("./assets/images/MusicNote.png")}
+                      />
+                      <Card.Body>
+                        <Card.Title>{item.artist.name}</Card.Title>
+                        <Card.Text>{item.name}</Card.Text>
+                        <Button
+                          onClick={(e) =>
+                            handleSubmit(item.artist.name, item.name)
+                          }
+                          className="btn btn-danger"
+                          id="btn-danger"
+                        >
+                          Add to Playlist
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                );
+              })}
+          </Row>
         </div>
 
         <div>
-          {/* GENRE SEARCH BY BUTTON */}
-          {searchGenre.map((item, index) => {
-            return (
-              <>
-                <div key={index}>
-                  {/* stylized button with an onClick method that will have another function that add the song to the playlist */}
-                  <Button
-                    onClick={(e) => handleSubmit(item.artist.name, item.name)}
-                    className="btn btn-danger"
-                    id="btn-danger"
+          {/* GENRE SEARCH BY INPUT MAPPING AND RETURN*/}
+          <Row lg={3}>
+            {searchGenre &&
+              searchGenre.map((item, index) => {
+                return (
+                  <Col
+                    className="d-flex text-center"
+                    style={{ marginTop: "10px" }}
                   >
-                    Add to Playlist
-                  </Button>
-                  <h2>Song Title: {item.name}</h2>
-                  <h3>Artist: {item.artist.name}</h3>
-                  <h3>Genre: {genre}</h3>
-                </div>
-              </>
-            );
-          })}
+                    <Card className="flex-fill">
+                      <Card.Img
+                        variant="top"
+                        src={require("./assets/images/MusicNote.png")}
+                      />
+                      <Card.Body>
+                        <Card.Title>{item.artist.name}</Card.Title>
+                        <Card.Text>{item.name}</Card.Text>
+                        <Button
+                          onClick={(e) =>
+                            handleSubmit(item.artist.name, item.name)
+                          }
+                          className="btn btn-danger"
+                          id="btn-danger"
+                        >
+                          Add to Playlist
+                        </Button>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                );
+              })}
+          </Row>
         </div>
       </div>
     </>
