@@ -3,10 +3,10 @@ import Home from './components/Home';
 import Nav from './components/sub-components/Nav'
 import About from './components/About';
 import Contact from './components/Contact';
-import Display from './components/Display';
+import MyPlaylist from './components/MyPlaylist';
 import Search from './components/Search';
 import Footer from './components/sub-components/Footer';
-import Sign from './components/Sign';
+import Register from './components/Register';
 import React, {useEffect, useState} from 'react';
 import Axios from 'axios';
 import {
@@ -39,10 +39,10 @@ function App() {
       <Routes>
         <Route path='/' element={ <Home />} /> 
         <Route path='/about' element={<About />}/> 
-        <Route path='/myplaylist' element={<Display />}/> 
+        <Route path='/myplaylist' element={<MyPlaylist />}/> 
         <Route path='/create' element={<Search />}/> 
         <Route path='/contact' element={<Contact />}/> 
-        <Route path='/Sign' element={ <Sign />} />
+        <Route path='/register' element={ <Register />} />
 
       </Routes>
       <Footer/>
