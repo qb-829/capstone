@@ -1,10 +1,14 @@
 
 
+
+
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Register from '../Register';
 import axios from 'axios';
+import '../assets/images/homepage.jpeg'
+
 
 export default function LoginForm() {
 
@@ -14,6 +18,7 @@ export default function LoginForm() {
     const [isSubmitted, setIsSubmitted] = useState(false);
 
     const navigate = useNavigate();
+
 
     // allows rendering and refreshing of the component
     useEffect(() => {
@@ -63,12 +68,13 @@ export default function LoginForm() {
     };
 
     return <>
-        <div>
+            <div className="App">
+
 
             {/* create a form with username and password fields */}
             <form id='form' className='form-group container' onSubmit={handleSubmit} >
                 <div className='d-flex flex-column'>
-                    <h2>Login or Sign up below</h2>
+                    <h2 className='home-title'>Login or Sign up below</h2>
                     <div>
                         <input
                             className='form-control'
@@ -99,7 +105,7 @@ export default function LoginForm() {
 
                 </div>
             
-                    <br /><h5>No Account? No problem! Sign up below!</h5>
+                    <br /><h5 className='home-sub-title'>No Account? No problem! Sign up below!</h5>
 
 
                     <br />
@@ -117,4 +123,3 @@ export default function LoginForm() {
        
   </>
 }
-

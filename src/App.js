@@ -17,28 +17,27 @@ import {
 import Auth from './components/sub-components/Auth';
 
 
-function App() {
-  const App = () => {
-    const[data,setData] = useState("");
-    const getData = async() => {
-        const response = await Axios.get ("http://localhost:5000/getData");
-        setData(response.data);
-    }
-    useEffect(() => {
-        getData ()
-    },[]);
-    return (
-        <div>
-            {data}
-        </div>
-    )
-}
-return<>
 
+function App() {
+    const App = () => {
+        const[data,setData] = useState("");
+        const getData = async() => {
+            const response = await Axios.get ("http://localhost:5000/getData");
+            setData(response.data);
+        }
+        useEffect(() => {
+            getData ()
+        },[]);
+        return (
+            <div>
+                {data}
+            </div>
+        )
+    }
+  return <>
     <Router>
       < Nav />
       <Routes>
-
         <Route path='/' element={ <Home />} /> 
         <Route path='/about' element={<About />}/> 
         {/* <Route path='protected-page'></Route> */}
@@ -52,9 +51,7 @@ return<>
           </Auth> } />
         {/* <Route path='/create' element={}/>  */}
         <Route path='/contact' element={<Contact />}/> 
-        <Route path='/Register' element={ <Register />} />
-
-
+        <Route path='/register' element={ <Register />} />
 
       </Routes>
       <Footer/>

@@ -41,10 +41,16 @@ export default function MyPlaylist() {
 
   return (
     <>
-      <div>
-        <h1>Welcome</h1>
+      <div className="myplaylist-background">
+           <h1 className="myplaylist-contents">Welcome User</h1>
+        <p className="myplaylist-blurb">
+        Welcome to your playlist page! Here you can curate a selection of songs to fit any mood or occasion.
+        Create your own personal playlist to save your favorite songs. Whether you're looking for something to dance
+        to, something to study to, or just something to chill to, our playlist page has got you covered.
+        Thank you for choosing us to enhance your listening experience. Happy listening!
+        </p>
         {/* user information will be pulled from user table once signed in */}
-        <h2>Here is your playlist:</h2>
+        <h2 className="playlist-title">Here is your playlist:</h2>
         {/* for each genre that has a playlist it creates a div */}
         <div>
           {data.map((item, index) => {
@@ -60,7 +66,7 @@ export default function MyPlaylist() {
           })}
         </div>
 
-        <button onClick={() => navigate("/create")} className="btn btn-primary">
+        <button onClick={() => navigate("/create")} className="btn btn-primary" id="playlist-button">
           Create Playlist
         </button>
         {/* this button opens to 'Create Playlist/Results' page that has a button for each genre; each genre is an API call */}
