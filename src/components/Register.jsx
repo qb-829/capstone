@@ -35,6 +35,7 @@ function Register() {
     }
   }
 
+  
   function handleSubmit(e) {
     const newUser = { ...user };
     newUser[e.target.id] = e.target.value;
