@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Register from '../Register';
-import '../assets/images/background.png'
+import '../assets/images/homepage.jpeg'
 
 
 export default function LoginForm() {
@@ -76,7 +76,7 @@ export default function LoginForm() {
             {/* create a form with username and password fields */}
             <form id='form' className='form-group container' onSubmit={handleSubmit} >
                 <div className='d-flex flex-column'>
-                    <h2>Login or Sign up below</h2>
+                    <h2 className='home-title'>Login or Sign up below</h2>
                     <div>
                         <input
                             className='form-control'
@@ -107,7 +107,7 @@ export default function LoginForm() {
 
                 </div>
             
-                    <br /><h5>No Account? No problem! Sign up below!</h5>
+                    <br /><h5 className='home-sub-title'>No Account? No problem! Sign up below!</h5>
 
 
                     <br />

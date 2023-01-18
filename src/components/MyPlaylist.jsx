@@ -8,25 +8,24 @@ export default function MyPlaylist() {
   //mock data can be used to display
   //will need state to hold username - coming from user input, when someone hits login put - save input to state or global variable
   const navigate = useNavigate();
-  const [artistName, setArtistName] = useState("");
-  const [songName, setSongName] = useState("");
-  const [genre, setGenre] = useState("");
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
 
   useEffect(() => {
     getPlaylist();
   }, []);
 
-  const getPlaylist = async () => {
+  const getPlaylist = async (itemArtistName, itemName) => {
     try {
-      await axios("http://localhost:5000/myplaylist").then(
+      await axios("http://localhost:5000/myplaylist", {
+        artistName: itemArtistName,
+        songName: itemName,
+      }).then(
         (res) => {
-          setData(res.data);
+          setData(res.data.records);
           setLoading(false);
-          console.log(res.data);
+          console.log(res.data.records);
         },
         (error) => {
           console.log("Error fetching data: ", error);
@@ -42,19 +41,32 @@ export default function MyPlaylist() {
 
   return (
     <>
-      <div>
-        <h1>Welcome User</h1>
+      <div className="myplaylist-background">
+           <h1 className="myplaylist-contents">Welcome User</h1>
+        <p className="myplaylist-blurb">
+        Welcome to your playlist page! Here you can curate a selection of songs to fit any mood or occasion.
+        Create your own personal playlist to save your favorite songs. Whether you're looking for something to dance
+        to, something to study to, or just something to chill to, our playlist page has got you covered.
+        Thank you for choosing us to enhance your listening experience. Happy listening!
+        </p>
         {/* user information will be pulled from user table once signed in */}
-        <h2>Here are your playlists:</h2>
+        <h2 className="playlist-title">Here is your playlist:</h2>
         {/* for each genre that has a playlist it creates a div */}
-
-        <div>{data}</div>
         <div>
-          <h3>Playlist One: </h3>
-          {/* pulls from playlist database */}
-          <ul>track one</ul>
+          {data.map((item, index) => {
+            return (
+              <>
+                <div key={index}>
+                  <h2>Song Title: {item.songName}</h2>
+                  <h3>Artist: {item.artistName}</h3>
+                  <h3>Genre: {item.genre}</h3>
+                </div>
+              </>
+            );
+          })}
         </div>
-        <button onClick={() => navigate("/create")} className="btn btn-primary">
+
+        <button onClick={() => navigate("/create")} className="btn btn-primary" id="playlist-button">
           Create Playlist
         </button>
         {/* this button opens to 'Create Playlist/Results' page that has a button for each genre; each genre is an API call */}

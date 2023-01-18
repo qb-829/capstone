@@ -20,10 +20,12 @@ export default function Contact() {
       console.log(formData);
   }
 
+  
+
   return (
       // <!-- Contact-->
         <section class="page-section" id="contact">
-            <div class="container">
+            <div class="contact-container">
                 <div class="text-center">
                     <h2 class="section-heading text-uppercase">Contact Me</h2>
                     <h3 class="section-subheading text-muted">Please feel free to reach out with questions or requests</h3>
@@ -31,6 +33,7 @@ export default function Contact() {
                 {/* <!-- * * * * * * * * * * * * * * *-->
                 <!-- * * SB Forms Contact Form * *-->
                 <!-- * * * * * * * * * * * * * * *--> */}
+                <div className='content-holder' id=' "content-holder'>
                 <form  id="contactForm" action="https://submit-form.com/QiBqHSlS" method="POST">
                     <div class="row align-items-stretch mb-5">
                         <div class="col-md-6">
@@ -78,7 +81,7 @@ export default function Contact() {
                     <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Send Message</button></div>
                 </form>
             </div>
+            </div>
         </section>
   )
 }
-
